@@ -49,9 +49,6 @@ export default function Contacts({ contacts, groups, currentUser, changeChat, ch
   const closeNewGroupForm = () => {
     setNewGroupForm(false);
   };
-  const setChatbot = (e) => {
-    changeChat('chatbot');
-  };
 
   return (
     <>
