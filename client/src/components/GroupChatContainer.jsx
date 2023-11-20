@@ -1,10 +1,10 @@
 import React, { useState, useEffect , useRef} from 'react'
 import styled from "styled-components"
 import ChatInput from './ChatInput';
-// import Logout from './Logout';
 import axios from "axios";
 import { getAllGroupMessagesRoute, sendGroupMessageRoute } from '../utils/APIRoutes'
 import { v4 as uuidv4} from "uuid";
+
 export default function GroupChatContainer({ currentChat, currentUser, socket }) {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -12,7 +12,7 @@ export default function GroupChatContainer({ currentChat, currentUser, socket })
 
   useEffect(() => {
     const fetchData = async () => {
-      if (currentChat) {
+      if (currentChat && currentChat._id) {
         const response = await axios.post(getAllGroupMessagesRoute, {
           group: currentChat._id,
           from: currentUser._id,
@@ -47,10 +47,11 @@ export default function GroupChatContainer({ currentChat, currentUser, socket })
   };
 
   useEffect(() => {
+    if (currentChat && currentChat._id) {
     socket.current.emit("join-group", {
       userId: currentUser._id,
       groupId: currentChat._id,
-    });
+    });}
   }, [currentChat._id, currentUser._id, socket]);
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function GroupChatContainer({ currentChat, currentUser, socket })
   }, []);
 
   useEffect(() => {
-    if (arrivalMessage) {
+    if (arrivalMessage && currentChat) {
       setMessages((prevMessages) => [
         ...prevMessages,
         {

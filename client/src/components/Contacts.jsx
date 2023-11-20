@@ -7,7 +7,6 @@ export default function Contacts({ contacts, groups, currentUser, changeChat, ch
   const [currentSelected, setCurrentSelected] = useState(undefined);
   const [chatType, setChatType] = useState('personal');
   const [newGroupForm, setNewGroupForm] = useState(false);
-
   useEffect(() => {
     if (currentUser) {
       setCurrentUserName(currentUser.username);
@@ -50,6 +49,9 @@ export default function Contacts({ contacts, groups, currentUser, changeChat, ch
   const closeNewGroupForm = () => {
     setNewGroupForm(false);
   };
+  const setChatbot = (e) => {
+    changeChat('chatbot');
+  };
 
   return (
     <>
@@ -82,11 +84,15 @@ export default function Contacts({ contacts, groups, currentUser, changeChat, ch
                   key={contact._id}
                   onClick={() => changeCurrentChat(index, contact)}
                 >
+                  
                   <div className="username">
                     <h3>{contact.username}</h3>
                   </div>
+                  
                 </div>
-              ))}
+              ))
+              }
+              
             {chatType === 'group' &&
               groups.map((group, index) => (
                 <div
@@ -106,6 +112,7 @@ export default function Contacts({ contacts, groups, currentUser, changeChat, ch
                 </button>
               </div>
             </div>
+            
           </div>
           <div className="current-user">
             <div className="username">

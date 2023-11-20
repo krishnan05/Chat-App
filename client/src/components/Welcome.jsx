@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import ChatComponent from './ChatBot';
-
 
 export default function Welcome({currentUser}) {
-  return (
-    
   
-        <ChatComponent></ChatComponent>
+  return (
+    <Container>
+    <h1>
+        Welcome, <span>{currentUser.username}!</span>
+    </h1>
+    <h3>Please select a chat to start Messaging.</h3>
+</Container>
       
 
        

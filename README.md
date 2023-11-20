@@ -32,3 +32,5 @@ node index.js
 npm install
 npm run start
 ```
+### System Design
+ [System Design](https://github.com/krishnan05/Chat-App/.github/CONTRIBUTING.md)

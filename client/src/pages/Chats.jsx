@@ -8,6 +8,7 @@ import Welcome from "../components/Welcome";
 import ChatContainer from "../components/ChatContainer";
 import { io } from "socket.io-client";
 import GroupChatContainer from "../components/GroupChatContainer";
+import ChatComponent from "../components/ChatBot";
 
 export default function Chats() {
   const socket = useRef();
@@ -75,6 +76,10 @@ export default function Chats() {
       <div className="container">
         
         <Contacts contacts={contacts} groups={groups} currentUser= {currentUser} changeChat={handleChatChange} changeChatType={handleChatType} changeGroup={handleGroup} />
+        
+        {chatType === 'chatbot'?(
+          <ChatComponent></ChatComponent>
+        ):("")}
         {isLoaded &&
           (currentChat === undefined && currentGroup ===undefined? (
             <Welcome currentUser={currentUser} />

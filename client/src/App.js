@@ -7,9 +7,7 @@ import {
 import Register from "../src/pages/Register";
 import Login from "../src/pages/Login";
 import Chats from "../src/pages/Chats";
-import Sidebar from './components/sidebar';
-import Notifications from './components/Notifications';
-import VideoPlayer from './components/VideoChat';
+
 
 
 export default function App() {
