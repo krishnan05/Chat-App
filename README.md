@@ -1,6 +1,6 @@
 # Real-Time Chatting Website App
 
-This repository contains the code for a real-time chatting website application built with Node.js, Express.js, React.js, and Socket.io.
+This repository contains the code for a real-time chatting website application and chatbot built with Node.js, Express.js, React.js, and Socket.io.
 
 ## Project Structure
 
