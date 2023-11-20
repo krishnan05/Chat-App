@@ -33,4 +33,4 @@ npm install
 npm run start
 ```
 ### System Design
- [System Design](https://github.com/krishnan05/Chat-App/.github/CONTRIBUTING.md)
+ [System Design]([https://github.com/krishnan05/Chat-App/.github/CONTRIBUTING.md](https://github.com/krishnan05/Chat-App/blob/master/.github/SYSTEMDESIGN.md)https://github.com/krishnan05/Chat-App/blob/master/.github/SYSTEMDESIGN.md)
