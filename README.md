@@ -33,4 +33,12 @@ npm install
 npm run start
 ```
 ### System Design
- [System Design](https://github.com/krishnan05/Chat-App/.github/CONTRIBUTING.md)
+ [System Design](https://github.com/krishnan05/Chat-App/blob/master/.github/SYSTEMDESIGN.md)
+
+### Dependencies Details
+[Dependencies](https://github.com/krishnan05/Chat-App/blob/master/.github/Dependencies.md)
+
+ ### Creator
+ - [Aayush Krishnan](https://github.com/krishnan05)
+ - Mechanical Engineering
+ - IIT Bhilai
