@@ -3,14 +3,17 @@
 ## 1. Introduction
 
 ### 1.1 Purpose
+
 This document outlines the design and architecture of a real-time chatting website. The goal is to provide an overview of how the system functions and the technologies used.
 
 ### 1.2 Scope
-The system allows users to engage in real-time text-based communication in both personal and group chat settings.
+
+The system allows users to engage in real-time text-based communication in both personal, group chat and chatbot settings.
 
 ## 2. System Overview
 
 ### 2.1 System Architecture
+
 The system follows a client-server architecture with a WebSocket-based real-time communication layer.
 
 ### 2.2 System Components
@@ -19,6 +22,7 @@ The system follows a client-server architecture with a WebSocket-based real-time
 - Developed using React.js
 - Utilizes Socket.IO for real-time communication
 - Integrated with emoji-picker-react for emoji support
+- ChatBot developed using Hugging Face
 
 #### Server:
 
