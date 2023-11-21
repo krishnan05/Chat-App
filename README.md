@@ -8,6 +8,7 @@ The project is organized into two main folders:
 
 1. **Backend**: Contains the server-side code built with Node.js and Express.js.
 2. **Client**: Contains the client-side code built with React.js.
+3. ChatBot in the landing page
 
 ## Getting Started
 
