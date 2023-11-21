@@ -88,15 +88,12 @@ The MongoDB database includes collections for users, personal chats, and group c
 - Optimized WebSocket communication for low-latency messaging.
 - Scalability considerations for handling increased user and chat volumes
 
-## 8. Deployment
 
-- The application is deployed on Vercel
-
-## 9. Conclusion
+## 8. Conclusion
 
 The real-time chatting website provides an efficient and secure platform for users to communicate seamlessly.
 
-### 10. References
+### 9. References
 
 - Socket.IO Documentation
 - MongoDB Documentation
