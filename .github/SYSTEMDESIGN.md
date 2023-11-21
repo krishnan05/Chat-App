@@ -78,12 +78,7 @@ The MongoDB database includes collections for users, personal chats, and group c
 
 ## 6. Security
 
-### 6.1 Authentication and Authorization
-
-- Users are authenticated using JWT tokens.
-- Authorization checks for chat access.
-
-### 6.2 Data Security
+### 6.1 Data Security
 
 - Encryption for data in transit using HTTPS.
 - MongoDB security measures for data at rest.
