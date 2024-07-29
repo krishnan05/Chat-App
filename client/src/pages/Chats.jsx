@@ -19,9 +19,8 @@ export default function Chats() {
   const [currentGroup, setCurrentGroup] = useState(undefined);
   const [isLoaded, setIsLoaded] = useState(false);
   const [groups, setGroups] = useState([]);
-   const [chatType, setChatType] = useState();
-
-
+  const [chatType, setChatType] = useState();
+  
   useEffect( ()=>{
     const navigationTo = async () => {
       if (!localStorage.getItem('chat-app-user'))

@@ -25,16 +25,15 @@ const ChatComponent = () => {
    
     try {
     const response = await axios.post(chatbotapi, { message:msg });
-   
+      
     const Botresponse = {
-        text:response.data.reply.generated_text,
+        text:response.data.reply[0].generated_text,
         fromSelf:false
     };
-   
     // setMessages(prevMessages => [...prevMessages, botResponse]);
     setTimeout(() => {
         setMessages((prevMessages) => [...prevMessages, Botresponse]);
-      }, 500);
+      }, 1000);
     
     } catch (error) {
       console.error('Error sending message:', error);

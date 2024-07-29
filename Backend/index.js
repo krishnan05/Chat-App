@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const messageRoute = require("./routes/messagesRoute");
 const socket = require("socket.io");
+// import { v4 as uuidV4 } from 'uuid';
+const { v4: uuidV4 } = require("uuid");
 
 dotenv.config();
 app.use(cors());
@@ -82,8 +84,86 @@ io.on("connection", (socket) => {
         }
     });
 
-	socket.on("disconnect", () => {
-		socket.broadcast.emit("callEnded")
-	});
+	// socket.on("disconnect", () => {
+	// 	socket.broadcast.emit("callEnded")
+	// });
 
+    socket.on('join-room', (userData) => {
+        const { roomID, userID } = userData;
+        socket.join(roomID);
+        socket.to(roomID).broadcast.emit('new-user-connect', userData);
+        socket.on('disconnect', () => {
+            socket.to(roomID).broadcast.emit('user-disconnected', userID);
+        });
+    });
+    // socket.on("offer", ({ offer, to }) => {
+    //     const receiverSocketId = onlineUsers.get(to);
+    //     if (receiverSocketId) {
+    //       socket.to(receiverSocketId).emit('offer', { offer, from: socket.id });
+    //     }
+    //   });
+    
+    //   // Handle incoming answer
+    //   socket.on("answer", ({ answer, to }) => {
+    //     const receiverSocketId = onlineUsers.get(to);
+    //     if (receiverSocketId) {
+    //       socket.to(receiverSocketId).emit('answer', answer);
+    //     }
+    //   });
+    
+    //   // Handle ICE candidates
+    //   socket.on("ice-candidate", ({ candidate, to }) => {
+    //     const receiverSocketId = onlineUsers.get(to);
+    //     if (receiverSocketId) {
+    //       socket.to(receiverSocketId).emit('ice-candidate', candidate);
+    //     }
+    //   });
+    
+    //   // Handle call end
+    //   socket.on("end-call", ({ to }) => {
+    //     const receiverSocketId = onlineUsers.get(to);
+    //     if (receiverSocketId) {
+    //       socket.to(receiverSocketId).emit('call-ended');
+    //     }
+    //   });
+    
+    //   // Handle disconnect
+    //   socket.on("disconnect", () => {
+    //     console.log('Client disconnected:', socket.id);
+    //     onlineUsers.forEach((socketId, userId) => {
+    //       if (socketId === socket.id) {
+    //         onlineUsers.delete(userId);
+    //       }
+    //     });
+    //   });
+     // Handle signaling messages
+  socket.on('offer', ({ offer, to }) => {
+    const targetSocketId = onlineUsers.get(to);
+    if (targetSocketId) {
+      io.to(targetSocketId).emit('offer', { offer, from: socket.id });
+    }
+  });
+
+  socket.on('answer', ({ answer, to }) => {
+    const targetSocketId = onlineUsers.get(to);
+    if (targetSocketId) {
+      io.to(targetSocketId).emit('answer', { answer });
+    }
+  });
+
+  socket.on('ice-candidate', ({ candidate, to }) => {
+    const targetSocketId = onlineUsers.get(to);
+    if (targetSocketId) {
+      io.to(targetSocketId).emit('ice-candidate', { candidate });
+    }
+  });
+
+  socket.on('disconnect', () => {
+    onlineUsers.delete(socket.id);
+    console.log('A user disconnected');
+  });
+});
+
+app.get('/join', (req, res) => {
+    res.send({ link: uuidV4() });
 });

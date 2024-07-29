@@ -17,7 +17,7 @@ export default function App() {
       <Route path='/register' element={ <Register /> }/>
       <Route path='/login' element={ <Login /> }/>
       <Route path='/' element={ <Chats/> }/>
-   
+      {/* <Route path='/video-call' element={<Video/>}/> */}
     </Routes>
     </BrowserRouter>
     

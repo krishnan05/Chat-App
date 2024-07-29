@@ -4,6 +4,7 @@ import ChatInput from './ChatInput';
 import axios from "axios";
 import { getAllMessagesRoute, sendMessageRoute } from '../utils/APIRoutes'
 import { v4 as uuidv4} from "uuid";
+import Videocall from './VideoCall';
 export default function ChatContainer({ currentChat, currentUser, socket }) {
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -67,6 +68,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
       {
         currentChat && (
           <Container>
+            
             <div className="chat-header">
               <div className="user-details">
                 
@@ -75,6 +77,9 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
                 </div>
               </div>
               {/* <Logout /> */}
+              <Videocall currentChat={currentChat}
+              socket={socket}
+              currentUser={currentUser}></Videocall>
             </div>
             <div className="chat-messages">
               {messages.map((message) => {
@@ -94,13 +99,15 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
                 );
               })}
             </div>
+            
             <ChatInput handleSendMsg={handleSendMsg} />
             {/* <VideoPlayer />
       <Sidebar>
         <Notifications />
       </Sidebar> */}
-
+          
           </Container>
+          
         )
       }
     </>

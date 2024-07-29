@@ -129,19 +129,31 @@ async function query(data) {
     const response = await fetch(
         "https://api-inference.huggingface.co/models/microsoft/DialoGPT-large",
         {
-            headers: { Authorization: `Bearer ${process.env.API_TOKEN}` },
+            headers: { Authorization: `Bearer ${process.env.API_TOKEN}`,
+           'Content-Type': 'application/json'  },
             method: "POST",
             body: JSON.stringify(data),
         }
     );
-    const result = await response.json();
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Response error:', response.status, response.statusText, errorText);
+      throw new Error(`Request failed with status ${response.status}: ${response.statusText}`);
+  }
+
+    const result = await response.json().catch(err => {
+        console.error('Error parsing JSON:', err);
+        throw err;
+    });
+    // const result = await response.json();
     return result;
 }
+
 
 module.exports.chatbot= async(req, res, next)=>{
   try {
     const userMessage = req.body.message;
-    const reply = await query({inputs:{text:userMessage}});
+    const reply = await query({inputs:userMessage});
     return res.json({ status: true,reply });
   }catch (err) {
     next(err);
