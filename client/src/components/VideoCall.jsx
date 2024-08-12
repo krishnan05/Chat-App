@@ -133,6 +133,7 @@ function Videocall({ currentChat, currentUser, socket }) {
   };
 
   const endCall = () => {
+    console.log("end");
     if (pc.current) {
       pc.current.close();
       pc.current = null;
